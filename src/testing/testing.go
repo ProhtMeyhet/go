@@ -948,3 +948,26 @@ func parseCpuList() {
 		}
 	}
 }
+
+// I is an interface that wraps methods both in T and B.
+//
+// It can be used to write tests that accept either T or B.
+// If specific methods of T or B are required for a task, the
+// test must try to cast the given interface to the specific
+// object. If the cast fails, the test should continue normally
+// without error and simply assume it's either a Test or a Benchmark. 
+type I interface {
+	Error(args ...interface{})
+	Errorf(format string, args ...interface{})
+	Fail()
+	FailNow()
+	Failed() bool
+	Fatal(args ...interface{})
+	Fatalf(format string, args ...interface{})
+	Log(args ...interface{})
+	Logf(format string, args ...interface{})
+	Skip(args ...interface{})
+	SkipNow()
+	Skipf(format string, args ...interface{})
+	Skipped() bool
+}
